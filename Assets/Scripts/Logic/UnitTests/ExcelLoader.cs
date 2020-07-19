@@ -4,11 +4,10 @@ using System.Data;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Excel;
-using Logic;
 using NUnit.Framework;
+using ExcelDataReader;
 
-namespace UnitTests
+namespace Logic.Tests
 {
     public class StatsInfo
     {
@@ -50,7 +49,11 @@ namespace UnitTests
 
 	class ExcelLoader : IEnumerable<StateInfo>
 	{
-        
+        static ExcelLoader()
+        {
+			System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+		}
+
 		public ExcelLoader(string name)
 		{
 			var deploymentFolder = System.IO.Path.GetDirectoryName(this.GetType().Assembly.Location);
@@ -59,12 +62,13 @@ namespace UnitTests
             if (!System.IO.File.Exists(spreadsheetPath))
                 throw new FileNotFoundException($"File not found: {spreadsheetPath}",spreadsheetPath);
 
-			IExcelDataReader excelReader;
 			using (FileStream stream = File.Open(spreadsheetPath, FileMode.Open, FileAccess.Read))
 			{
-				excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
-				excelReader.IsFirstRowAsColumnNames = false;
-				_spreadSheet = excelReader.AsDataSet();
+				using (var excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream))
+                {
+					//excelReader.Col = false;
+					_spreadSheet = excelReader.AsDataSet();
+				}
 			}
 		}
 

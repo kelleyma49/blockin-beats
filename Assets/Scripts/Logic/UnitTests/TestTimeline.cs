@@ -3,7 +3,7 @@ using NUnit.Framework;
 using System;
 using Logic;
 
-namespace UnitTests
+namespace Logic.Tests
 {
 	[TestFixture()]
 	public class TestTimeline

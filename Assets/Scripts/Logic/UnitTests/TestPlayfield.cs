@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using Logic;
 
-namespace UnitTests
+namespace Logic.Tests
 {
 	[TestFixture()]
 	public class TestPlayfield

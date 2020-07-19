@@ -3,7 +3,7 @@ using NUnit.Framework;
 using System;
 using System.Runtime.Serialization;
 
-namespace UnitTests
+namespace Logic.Tests
 {
 	[TestFixture()]
 	public class TestSerializationHelpers

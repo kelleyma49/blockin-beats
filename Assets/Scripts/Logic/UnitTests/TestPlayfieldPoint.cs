@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using System;
 
-namespace UnitTests
+namespace Logic.Tests
 {
 	[TestFixture()]
 	public class TestPlayfieldPoint
