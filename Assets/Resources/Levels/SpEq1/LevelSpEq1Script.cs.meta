@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 73aae525097fb5c42abf9bece7d54250
+timeCreated: 1495692795
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - prefabWhite: {instanceID: 0}
+  - prefabBlack: {instanceID: 0}
+  - backgroundMaterial: {fileID: 2100000, guid: e9fbf94753533ba43afc1a5a9a402785,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

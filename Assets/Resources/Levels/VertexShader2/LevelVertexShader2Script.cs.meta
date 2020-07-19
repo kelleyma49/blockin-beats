@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a30ddf4ec26b6004dbe8686d9593406d
+timeCreated: 1496461455
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - prefabWhite: {instanceID: 0}
+  - prefabBlack: {instanceID: 0}
+  - backgroundMaterial: {instanceID: 0}
+  - meshShader: {fileID: 4800000, guid: 63c5c341f5e0b8e468746d1a7b1e91ae, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
