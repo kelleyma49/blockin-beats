@@ -26,6 +26,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\Logic\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="ExcelDataReader" Version="3.6.0" />
     <PackageReference Include="ExcelDataReader.DataSet" Version="3.6.0" />
     <PackageReference Include="nunit" Version="3.12.0" />
