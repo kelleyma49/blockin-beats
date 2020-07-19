@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\..\Cell.cs" Link="Cell.cs" />
+    <Compile Include="..\..\..\DropPiece.cs" Link="DropPiece.cs" />
+    <Compile Include="..\..\..\DropPieceSimple.cs" Link="DropPieceSimple.cs" />
+    <Compile Include="..\..\..\Playfield.cs" Link="Playfield.cs" />
+    <Compile Include="..\..\..\PlayfieldElement.cs" Link="PlayfieldElement.cs" />
+    <Compile Include="..\..\..\PlayfieldPoint.cs" Link="PlayfieldPoint.cs" />
+    <Compile Include="..\..\..\SerializeHelpers.cs" Link="SerializeHelpers.cs" />
+    <Compile Include="..\..\..\Square.cs" Link="Square.cs" />
+    <Compile Include="..\..\..\Stats.cs" Link="Stats.cs" />
+    <Compile Include="..\..\..\Timeline.cs" Link="Timeline.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Logic.Tests</_Parameter1>
+    </AssemblyAttribute>
+</ItemGroup>
+
+</Project>
