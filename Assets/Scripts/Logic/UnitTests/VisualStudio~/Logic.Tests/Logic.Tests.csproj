@@ -12,10 +12,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="TestXls.tt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Include="..\..\DeploymentItem.cs" Link="DeploymentItem.cs" />
     <Compile Include="..\..\ExcelLoader.cs" Link="ExcelLoader.cs" />
     <Compile Include="..\..\TestCell.cs" Link="TestCell.cs" />
