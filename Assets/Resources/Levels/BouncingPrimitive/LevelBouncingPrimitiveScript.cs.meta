@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 28389e5588b13d449a79f03790dde430
+timeCreated: 1500166863
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - prefabWhite: {fileID: 158096, guid: 2824ec568e3b88c488b207a7ddce9a70, type: 2}
+  - prefabBlack: {fileID: 100178, guid: 8f80cdbc2ee81824191b640b9f511e57, type: 2}
+  - backgroundMaterial: {fileID: 2100000, guid: df42238212989a6429dd98cbb7bbb687,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
