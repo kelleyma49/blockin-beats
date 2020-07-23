@@ -461,12 +461,12 @@ public class PlayfieldManager : MonoBehaviour
 
     public void PlayCompletedSnd()
     {
-        GameObject.Find("CompletedSound1").GetComponent<AudioSource>().Play();
+        GameObject.Find("CompletedSound1")?.GetComponent<AudioSource>().Play();
     }
 
     public void PlayMoveSnd()
     {   
-        GameObject.Find("MoveSound1").GetComponent<AudioSource>().Play();
+        GameObject.Find("MoveSound1")?.GetComponent<AudioSource>().Play();
     }
 
     private void SquareStateChanged(object sender,System.EventArgs args)
