@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using Logic;
 using DG.Tweening;
+using UnityEngine.InputSystem;
 
 public class DropPieceView : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class DropPieceView : MonoBehaviour
     public Ease jewelEaseType = Ease.Flash;
     public float jewelHighlightAnimTime = 1.0f;
     public float jewelRotateAnimTime = 0.5f;
-    public InputHandler inputHandler;
     public PlayfieldManager playfieldManager;
 
     public bool UpdateVisuals { get; set; }
@@ -25,6 +25,7 @@ public class DropPieceView : MonoBehaviour
     private Vector2 _vecOffset = Vector2.zero;
     private bool _newColumnOrRow;
     private float _RotatingTo = 1.0f;
+    Logic.DropPiece.MoveDirection _moveDirection;
 
     private void Start()
     {
@@ -41,41 +42,53 @@ public class DropPieceView : MonoBehaviour
         _logic.NewColumnOrRow += (sender, args) => _newColumnOrRow = true;
     }
 
-    private Logic.DropPiece.MoveDirection CheckInput()
+    public enum Actions
     {
-        var moveDir = Logic.DropPiece.MoveDirection.None;
-        switch (inputHandler.Action)
+        None,
+        Left,
+        Right,
+        Down,
+        Rotate,
+        Pause
+    };
+    Actions Action;
+
+    public void Move(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
         {
-            case InputHandler.Actions.None:
-                break;
-            case InputHandler.Actions.Left:
-                moveDir = Logic.DropPiece.MoveDirection.Left;
-                break;
-            case InputHandler.Actions.Right:
-                moveDir = Logic.DropPiece.MoveDirection.Right;
-                break;
-            case InputHandler.Actions.Down:
-                moveDir = Logic.DropPiece.MoveDirection.Down;
-                _logic.CancelHolding();
-                break;
-            case InputHandler.Actions.Rotate:
-                moveDir = Logic.DropPiece.MoveDirection.Rotate;
-                break;
-            case InputHandler.Actions.Pause:
-                break;
+            var val = context.ReadValue<Vector2>();
+
+            if (val.x >= 1.0)
+            {
+                _moveDirection = Logic.DropPiece.MoveDirection.Right;
+            }
+            else if (val.x <= -1.0)
+            {
+                _moveDirection = Logic.DropPiece.MoveDirection.Left;
+            }
+            else if (val.y <= -1.0)
+            {
+                _moveDirection = Logic.DropPiece.MoveDirection.Down;
+            }
+            else if (val.y >= 1.0)
+            {
+                _moveDirection = Logic.DropPiece.MoveDirection.Rotate;
+            }
+
+            Debug.Log($"x: {val.x} y: {val.y} action: {Action}");
         }
-        return moveDir;
+        else if (context.phase == InputActionPhase.Performed)
+        {
+        }
     }
 
     void Update()
     {
         _newColumnOrRow = false;
 
-        // check input:
-        var moveDir = CheckInput();
-
         var playfield = playfieldManager.Playfield;
-        _logic.Update(TimeSpan.FromSeconds(Time.deltaTime), moveDir,
+        _logic.Update(TimeSpan.FromSeconds(Time.deltaTime), _moveDirection,
             (c, r, i) => c >= 0 && c < playfield.NumCellColumns - 1,
             (d) => playfieldManager.PlayMoveSnd(),
             (p) => p.Row >= playfield.NumCellRows || playfield.GetCell(p).IsOccupied,
@@ -145,6 +158,7 @@ public class DropPieceView : MonoBehaviour
             _instantiatePieces = true;
         }
 
+        _moveDirection = DropPiece.MoveDirection.None;
     }
 
     IEnumerator StopSparks()

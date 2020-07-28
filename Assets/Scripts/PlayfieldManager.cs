@@ -195,11 +195,11 @@ public class PlayfieldManager : MonoBehaviour
             Level.AudioTex = _audioViz.AudioTexture;
         }
 
-        if (_dropPieceView.inputHandler.Action == InputHandler.Actions.Pause)
-        {
-            Debug.Log("set level '" + _levelNames[_currentLevel] + "'");
-            SetLevel();
-        }
+        //if (_dropPieceView.inputHandler.Action == InputHandler.Actions.Pause)
+        //{
+        //Debug.Log("set level '" + _levelNames[_currentLevel] + "'");
+        //SetLevel();
+        // }
 
         // update plane to fill camera:
         {
