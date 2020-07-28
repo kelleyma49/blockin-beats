@@ -141,7 +141,6 @@ public class LevelCreator : EditorWindow
 
             // create prefab
             var prefabPath = System.IO.Path.ChangeExtension(p, "prefab").Replace("\\", "/");
-            var ph = PrefabUtility.CreateEmptyPrefab(prefabPath);
 
             var spriteGo = new GameObject();
             var sr = spriteGo.AddComponent<SpriteRenderer>();
@@ -149,7 +148,7 @@ public class LevelCreator : EditorWindow
             sr.sortingOrder = 1;
             sr.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(p);
 
-            PrefabUtility.ReplacePrefab(spriteGo, ph, ReplacePrefabOptions.ConnectToPrefab);
+            PrefabUtility.SaveAsPrefabAsset(spriteGo, prefabPath);
             GameObject.DestroyImmediate(spriteGo);
 
             var prefabLoaded = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
@@ -167,8 +166,8 @@ public class LevelCreator : EditorWindow
         al.backgroundMaterial = newMaterial;
  
         // setup level prefab:       
-        var placeholder = PrefabUtility.CreateEmptyPrefab(shaderPath.Replace("\\", "/").Replace(".shader", ".prefab"));
-        PrefabUtility.ReplacePrefab(go, placeholder, ReplacePrefabOptions.ConnectToPrefab);
+        var assetPath = shaderPath.Replace("\\", "/").Replace(".shader", ".prefab");
+        PrefabUtility.SaveAsPrefabAsset(go, assetPath);
         GameObject.DestroyImmediate(go);
     }
 
