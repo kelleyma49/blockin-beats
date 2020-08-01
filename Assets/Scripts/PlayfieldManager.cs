@@ -220,7 +220,7 @@ public class PlayfieldManager : MonoBehaviour
         if (Playfield.Timeline.TotalColumnAbs != _lastColumn) {
             _lastColumn = Playfield.Timeline.TotalColumnAbs;
             var output = Playfield.PrintCells(_lastColumn.ToString());
-            Debug.Log(output);
+            //Debug.Log(output);
         }
 
         Playfield.Timeline.IncrementPosition(Time.deltaTime * Level.timelineRate);

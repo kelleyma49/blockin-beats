@@ -4,6 +4,7 @@ using System.Collections;
 using Logic;
 using DG.Tweening;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class DropPieceView : MonoBehaviour
 {
@@ -25,10 +26,23 @@ public class DropPieceView : MonoBehaviour
     private Vector2 _vecOffset = Vector2.zero;
     private bool _newColumnOrRow;
     private float _RotatingTo = 1.0f;
-    Logic.DropPiece.MoveDirection _moveDirection;
+    private Logic.DropPiece.MoveDirection _moveDirection;
+    private Logic.DropPiece.MoveDirection _fastMoveDirection;
 
     private void Start()
     {
+        var pi = GetComponent<PlayerInput>();
+        var leftAction = pi.actions.FindAction("Left", true);
+        leftAction.started += c => MoveAction(c, isLeft: true);
+        leftAction.performed += c => MoveAction(c, isLeft: true);
+        var rightAction = pi.actions.FindAction("Right", true);
+        rightAction.started += c => MoveAction(c, isLeft: false);
+        rightAction.performed += c => MoveAction(c, isLeft: false);
+        var downAction = pi.actions.FindAction("Down", true);
+        downAction.performed += _ => _moveDirection = Logic.DropPiece.MoveDirection.Down;
+        var rotateAction = pi.actions.FindAction("Rotate", true);
+        rotateAction.performed += _ => _moveDirection = Logic.DropPiece.MoveDirection.Rotate;
+
         /*
         GetComponentInChildren<ParticleSystem>().enableEmission = false;
         GetComponentInChildren<ParticleSystem>().GetComponent<Renderer>().sortingLayerName = "PlayfieldHack";*/
@@ -42,58 +56,40 @@ public class DropPieceView : MonoBehaviour
         _logic.NewColumnOrRow += (sender, args) => _newColumnOrRow = true;
     }
 
-    public enum Actions
+    private void MoveAction(InputAction.CallbackContext context, bool isLeft)
     {
-        None,
-        Left,
-        Right,
-        Down,
-        Rotate,
-        Pause
-    };
-    Actions Action;
-
-    public void Move(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Started)
+        Debug.Log($"duration: {context.duration} time: {context.time} startTime: {context.startTime}");
+        var dir = isLeft ? Logic.DropPiece.MoveDirection.Left : Logic.DropPiece.MoveDirection.Right;
+        if (context.interaction is HoldInteraction && context.phase == InputActionPhase.Performed)
         {
-            var val = context.ReadValue<Vector2>();
-
-            if (val.x >= 1.0)
-            {
-                _moveDirection = Logic.DropPiece.MoveDirection.Right;
-            }
-            else if (val.x <= -1.0)
-            {
-                _moveDirection = Logic.DropPiece.MoveDirection.Left;
-            }
-            else if (val.y <= -1.0)
-            {
-                _moveDirection = Logic.DropPiece.MoveDirection.Down;
-            }
-            else if (val.y >= 1.0)
-            {
-                _moveDirection = Logic.DropPiece.MoveDirection.Rotate;
-            }
-
-            Debug.Log($"x: {val.x} y: {val.y} action: {Action}");
+            _fastMoveDirection = dir;
         }
-        else if (context.phase == InputActionPhase.Performed)
+        else
         {
+            _moveDirection = dir;
         }
     }
 
+   
     void Update()
     {
         _newColumnOrRow = false;
 
         var playfield = playfieldManager.Playfield;
-        _logic.Update(TimeSpan.FromSeconds(Time.deltaTime), _moveDirection,
+        if (_fastMoveDirection != Logic.DropPiece.MoveDirection.None)
+        {
+            _moveDirection = _fastMoveDirection;
+        }
+        bool moved = _logic.Update(TimeSpan.FromSeconds(Time.deltaTime), _moveDirection,
             (c, r, i) => c >= 0 && c < playfield.NumCellColumns - 1,
             (d) => playfieldManager.PlayMoveSnd(),
             (p) => p.Row >= playfield.NumCellRows || playfield.GetCell(p).IsOccupied,
             playfieldManager.PopulateCell
         );
+        if (!moved)
+        {
+            _fastMoveDirection = DropPiece.MoveDirection.None;
+        }
 
         const int numColumns = Logic.DropPiece.NumColumns;
         const int numRows = Logic.DropPiece.NumRows;

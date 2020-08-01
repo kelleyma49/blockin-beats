@@ -1767,7 +1767,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1676968467}
-  - component: {fileID: 1676968470}
   - component: {fileID: 1676968469}
   - component: {fileID: 1676968468}
   m_Layer: 0
@@ -1812,7 +1811,6 @@ MonoBehaviour:
   jewelHighlightAnimTime: 1
   jewelRotateAnimTime: 0.1
   playfieldManager: {fileID: 242580557}
-  inputHandler: {fileID: 1676968470}
 --- !u!114 &1676968469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1840,25 +1838,9 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1676968468}
-        m_TargetAssemblyTypeName: DropPieceView, Assembly-CSharp
-        m_MethodName: Move
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: e138c5ff-6b28-431b-b283-b82fd702f190
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3ff2649d-fb2a-4829-8d3a-70165f5f82d5
-    m_ActionName: Player/Look[/Mouse/delta,/Touchscreen/delta]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 11c4e8dc-523a-4c60-b4ba-81e3aba42738
@@ -1908,18 +1890,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1676968470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1676968466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19242a0825f99234abd22be1be3e3342, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1754767876
 PrefabInstance:
   m_ObjectHideFlags: 0
