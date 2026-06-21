@@ -4,6 +4,7 @@ using System.Collections;
 using Logic;
 using DG.Tweening;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class PlayfieldManager : MonoBehaviour
 {
@@ -133,6 +134,9 @@ public class PlayfieldManager : MonoBehaviour
             dpp.GenerateTiles(GetTileVisuals, new TileAnimParams(Ease.InCubic, 0.5f));
             _dropPiecePreviews.Enqueue(dpp);
         }
+
+        var pi = GetComponent<PlayerInput>();
+
     }
 
     int _lastColumn = -1;
@@ -199,7 +203,7 @@ public class PlayfieldManager : MonoBehaviour
         //{
         //Debug.Log("set level '" + _levelNames[_currentLevel] + "'");
         //SetLevel();
-        // }
+        //}
 
         // update plane to fill camera:
         {
@@ -228,7 +232,7 @@ public class PlayfieldManager : MonoBehaviour
 
     AudioSource audioSource;
     GameObject lgo;
-    void SetLevel()
+    public void SetLevel()
     {
         if (lgo != null)
         {

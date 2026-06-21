@@ -33,16 +33,16 @@ public class DropPieceView : MonoBehaviour
     {
         var pi = GetComponent<PlayerInput>();
         var leftAction = pi.actions.FindAction("Left", true);
-        leftAction.started += c => MoveAction(c, isLeft: true);
         leftAction.performed += c => MoveAction(c, isLeft: true);
         var rightAction = pi.actions.FindAction("Right", true);
-        rightAction.started += c => MoveAction(c, isLeft: false);
         rightAction.performed += c => MoveAction(c, isLeft: false);
         var downAction = pi.actions.FindAction("Down", true);
         downAction.performed += _ => _moveDirection = Logic.DropPiece.MoveDirection.Down;
         var rotateAction = pi.actions.FindAction("Rotate", true);
         rotateAction.performed += _ => _moveDirection = Logic.DropPiece.MoveDirection.Rotate;
 
+        var nextLevelAction = pi.actions.FindAction("NextLevel", true);
+        nextLevelAction.performed += _ => this.playfieldManager.SetLevel();
         /*
         GetComponentInChildren<ParticleSystem>().enableEmission = false;
         GetComponentInChildren<ParticleSystem>().GetComponent<Renderer>().sortingLayerName = "PlayfieldHack";*/

@@ -1,44 +1,53 @@
 fileFormatVersion: 2
 guid: a812901e9aa124947b9c50ee16152d84
 ScriptedImporter:
-  fileIDToRecycleName:
-    100000: gameObject/TwoColorSq
-    400000: gameObject/TwoColorSq/Transform
-    21200000: gameObject/TwoColorSq/SpriteRenderer
-    21300000: sprite
-    100100000: gameObject
+  internalIDToNameTable: []
   externalObjects: {}
+  serializedVersion: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-  script: {fileID: 11500000, guid: a57477913897c46af95d590f580878bd, type: 3}
-  SvgPixelsPerUnit: 100
-  GradientResolution: 128
-  Alignment: 0
-  CustomPivot: {x: 0, y: 0}
-  AdvancedMode: 0
-  PredefinedResolutionIndex: 1
-  TargetResolution: 1080
-  ResolutionMultiplier: 1
-  StepDistance: 10
-  SamplingStepDistance: 100
-  MaxCordDeviationEnabled: 0
-  MaxCordDeviation: 1
-  MaxTangentAngleEnabled: 0
-  MaxTangentAngle: 5
+  script: {fileID: 12408, guid: 0000000000000000e000000000000000, type: 0}
+  svgType: 3
+  texturedSpriteMeshType: 0
+  svgPixelsPerUnit: 100
+  gradientResolution: 64
+  alignment: 0
+  customPivot: {x: 0, y: 0}
+  generatePhysicsShape: 0
+  viewportOptions: 0
+  preserveViewport: 0
+  advancedMode: 0
+  tessellationMode: 1
+  predefinedResolutionIndex: 1
+  targetResolution: 1080
+  resolutionMultiplier: 1
+  stepDistance: 10
+  samplingStepDistance: 100
+  maxCordDeviationEnabled: 0
+  maxCordDeviation: 1
+  maxTangentAngleEnabled: 0
+  maxTangentAngle: 5
+  keepTextureAspectRatio: 1
+  textureSize: 256
+  textureWidth: 256
+  textureHeight: 256
+  wrapMode: 0
+  filterMode: 1
+  sampleCount: 4
+  preserveSVGImageAspect: 0
+  useSVGPixelsPerUnit: 0
   spriteData:
     TessellationDetail: 0
+    SpriteName: 'originalName: '
+    SpritePivot: {x: 0, y: 0}
+    SpriteAlignment: 0
+    SpriteBorder: {x: 0, y: 0, z: 0, w: 0}
     SpriteRect:
-      name: 
-      originalName: 
-      pivot: {x: 0, y: 0}
-      alignment: 0
-      border: {x: 0, y: 0, z: 0, w: 0}
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-      spriteID: af436fd0b16736243868d345fcd49092
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    SpriteID: af436fd0b16736243868d345fcd49092
     PhysicsOutlines: []
